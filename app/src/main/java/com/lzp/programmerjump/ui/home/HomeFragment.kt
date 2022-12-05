@@ -1,6 +1,7 @@
 package com.lzp.programmerjump.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,10 +9,17 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.lzp.programmerjump.databinding.FragmentHomeBinding
+import com.lzp.programmerjump.entity.Persion
+import com.lzp.programmerjump.util.FileUtils
+import com.alibaba.fastjson.JSON
 
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
+    /**
+     * 车控数据
+     */
+    private var mPersions: List<Persion>? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -29,12 +37,27 @@ class HomeFragment : Fragment() {
         val root: View = binding.root
 
         initObserve()
+
         return root
     }
 
     fun initObserve() {
         homeViewModel?.text?.observe(viewLifecycleOwner) {
             binding.textHome.text = it
+        }
+        initData()
+    }
+
+    fun initData() {
+        //Test
+        val content: String = FileUtils.parseFiletoString(this.context,"person.json")
+        Log.d("LZP","content:$content")
+        mPersions = JSON.parseArray(content, Persion::class.java)
+        mPersions?.let {
+            for(item in it) {
+                binding.textPerson.text = item.name
+                binding.textTotaltime.text = item.totletime
+            }
         }
     }
 
