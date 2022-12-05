@@ -43,7 +43,6 @@ class HomeFragment : Fragment() {
 
     fun initObserve() {
         homeViewModel?.text?.observe(viewLifecycleOwner) {
-            binding.textHome.text = it
         }
         initData()
     }
@@ -53,12 +52,6 @@ class HomeFragment : Fragment() {
         val content: String = FileUtils.parseFiletoString(this.context,"person.json")
         Log.d("LZP","content:$content")
         mPersions = JSON.parseArray(content, Persion::class.java)
-        mPersions?.let {
-            for(item in it) {
-                binding.textPerson.text = item.name
-                binding.textTotaltime.text = item.totletime
-            }
-        }
     }
 
     override fun onDestroyView() {
