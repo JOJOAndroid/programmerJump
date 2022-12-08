@@ -4,4 +4,12 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="encourage">加油！努力！奋斗！</string>
+    <string name="name">名称：%1$s</string>
+    <string name="readtime">阅读时间：%1$s</string>
+    <string name="sporttime">运动时间：%1$s</string>
+    <string name="learntime">学习时间：%1$s</string>
+    <string name="totletime">总时间：%1$s</string>
+    <string name="expendtime">消费总时间：%1$s</string>
+    <string name="treasure">财富时间：%1$s</string>
+    <string name="php_consumpotion">php消费：%1$s</string>
 </resources>
